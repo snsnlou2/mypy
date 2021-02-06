@@ -2239,11 +2239,11 @@ class State:
                 or self.options.fine_grained_incremental):
             return
         is_errors = self.transitive_error
-        if is_errors:
-            delete_cache(self.id, self.path, self.manager)
-            self.meta = None
-            self.mark_interface_stale(on_errors=True)
-            return
+        # if is_errors:
+        #     delete_cache(self.id, self.path, self.manager)
+        #     self.meta = None
+        #     self.mark_interface_stale(on_errors=True)
+        #     return
         dep_prios = self.dependency_priorities()
         dep_lines = self.dependency_lines()
         assert self.source_hash is not None
@@ -2258,7 +2258,7 @@ class State:
             self.manager.log("Cached module {} has same interface".format(self.id))
         else:
             self.manager.log("Cached module {} has changed interface".format(self.id))
-            self.mark_interface_stale()
+            self.mark_interface_stale(on_errors=is_errors)
             self.interface_hash = new_interface_hash
 
     def verify_dependencies(self, suppressed_only: bool = False) -> None:
