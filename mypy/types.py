@@ -2030,7 +2030,7 @@ class TypeStrVisitor(SyntheticTypeVisitor[str]):
     def visit_any(self, t: AnyType) -> str:
         if self.any_as_dots and t.type_of_any == TypeOfAny.special_form:
             return '...'
-        return 'Any'
+        return 'Any({})'.format(str(t.type_of_any))
 
     def visit_none_type(self, t: NoneType) -> str:
         return "None"

@@ -1664,7 +1664,7 @@ def format_type_inner(typ: Type,
     elif isinstance(typ, NoneType):
         return 'None'
     elif isinstance(typ, AnyType):
-        return 'Any({})'.format(str(typ.type_of_any))
+        return 'Any'
     elif isinstance(typ, DeletedType):
         return '<deleted>'
     elif isinstance(typ, UninhabitedType):
